@@ -2,9 +2,12 @@
 {{--    <p>{{$book -> title}}</p>--}}
 {{--    <p>{{$book -> author}}</p>--}}
 {{--    <p>{{$books}}</p>--}}
-    <?php
-        foreach ($books as $book) { ?>
+
+
+        @foreach ($books as $book)
             <h1>{{$book -> title}}</h1>
             <p>{{$book -> author}}</p>
-        <?php } ?>
+            <a href="{{ route('books.show', $book -> id) }}">Details</a>
+        @endforeach
+
 </div>

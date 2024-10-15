@@ -14,8 +14,8 @@ class BookController extends Controller
     {
         $books = Book::all();
         return view('books', ['books' => $books]);
-
-
+//
+//
 //        $books = new Book();
 //        $books->title = 'Game of Thrones';
 //        $books->author = 'George R.R. Martin';
@@ -43,7 +43,8 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        $book = Book::find($book->id);
+        return view('details', ['book' => $book]);
     }
 
     /**
