@@ -1,3 +1,4 @@
+<x-navbar></x-navbar>
 <x-layout>
     <form action="{{ route('books.store') }}" method="post">
         @csrf
