@@ -25,17 +25,23 @@ class BookController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create() // GET
     {
-        //
+        return view('books.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) //POST
     {
-        //
+        $book = new Book();
+        $book->title = $request->input('title');
+        $book->author = $request->input('author');
+        $book->description = $request->input('description');
+
+        $book->save();
+        return redirect()->route('books.index');
     }
 
     /**
@@ -44,7 +50,7 @@ class BookController extends Controller
     public function show(Book $book)
     {
         $book = Book::find($book->id);
-        return view('details', ['book' => $book]);
+        return view('books.details', ['book' => $book]);
     }
 
     /**
@@ -68,6 +74,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return redirect()->route('books.index');
     }
 }
