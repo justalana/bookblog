@@ -12,6 +12,10 @@
     </div>
 
     <div>
+        <a href="{{ route('books.edit', $book -> id) }}">Edit</a>
+    </div>
+
+    <div>
         <a href=" {{ route('books.index') }}">Go home</a>
     </div>
 
