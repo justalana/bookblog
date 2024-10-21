@@ -14,12 +14,6 @@ class BookController extends Controller
     {
         $books = Book::all();
         return view('books', ['books' => $books]);
-//
-//
-//        $books = new Book();
-//        $books->title = 'Game of Thrones';
-//        $books->author = 'George R.R. Martin';
-//        return view('books', ['book' => $books]);
     }
 
     /**
@@ -35,6 +29,18 @@ class BookController extends Controller
      */
     public function store(Request $request) //POST
     {
+
+        $request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'description' => 'required'
+        ], [
+            'title.required' => 'Title is required.',
+                'author.required' => 'Author is required.',
+                'description.required' => 'Description is required.'
+            ]
+        );
+
         $book = new Book();
         $book->title = $request->input('title');
         $book->author = $request->input('author');
@@ -58,7 +64,8 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        $book = Book::find($book->id);
+        return view('books.edit', ['book' => $book]);
     }
 
     /**
@@ -66,7 +73,12 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $book->title = $request->input('title');
+        $book->author = $request->input('author');
+        $book->description = $request->input('description');
+
+        $book->update();
+        return view('books.details', ['book' => $book]);
     }
 
     /**
