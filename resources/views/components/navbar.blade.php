@@ -11,8 +11,9 @@
         <x-navlink href="{{ route('profile.edit') }}" :active="request()->is('profile.edit')">Profile</x-navlink>
         <x-navlink href="{{ route('books.create') }}" :active="request()->is('books.create')">Add New Book</x-navlink>
         <form action="{{ route('logout') }}" method="post">
+            @csrf
             <x-primary-button type="submit">Logout</x-primary-button>
         </form>
-        
+
     @endauth
 </nav>

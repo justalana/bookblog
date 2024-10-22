@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -27,9 +28,8 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) //POST
+    public function store(Request $request, Book $book) //POST
     {
-
         $request->validate([
             'title' => 'required',
             'author' => 'required',
@@ -40,13 +40,13 @@ class BookController extends Controller
                 'description.required' => 'Description is required.'
             ]
         );
-
-        $book = new Book();
         $book->title = $request->input('title');
+        $book->user_id = auth()->user()->id;
         $book->author = $request->input('author');
         $book->description = $request->input('description');
 
         $book->save();
+
         return redirect()->route('books.index');
     }
 
