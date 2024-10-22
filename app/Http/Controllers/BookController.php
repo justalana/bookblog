@@ -40,10 +40,19 @@ class BookController extends Controller
                 'description.required' => 'Description is required.'
             ]
         );
+
+        // Laravel gives you an array of the selected checkboxes
+        $genres = $request->input('genres');
+
+        // Turn array into JSON string, so you can save it in a database column
+//        $jsonGenres = json_encode($genres);
+
+
         $book->title = $request->input('title');
         $book->user_id = auth()->user()->id;
         $book->author = $request->input('author');
         $book->description = $request->input('description');
+        $book->genre = json_encode($genres);
 
         $book->save();
 

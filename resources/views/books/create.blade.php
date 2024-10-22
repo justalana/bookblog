@@ -26,6 +26,18 @@
             @enderror
         </div>
 
+        <div>
+            <p>Genre</p>
+            <input type="checkbox" id="genre1" name="genres[]" value="fantasy">
+            <label for="fantasy">Fantasy</label><br>
+            <input type="checkbox" id="genre2" name="genres[]" value="romance">
+            <label for="romance">Romance</label><br>
+            <input type="checkbox" id="genre3" name="genres[]" value="scifi">
+            <label for="scifi">Science-Fiction</label><br>
+            <input type="checkbox" id="genre4" name="genres[]" value="lgbtq">
+            <label for="lgbtq">LGBTQ+</label><br>
+        </div>
+
         <x-primary-button type="submit">Create</x-primary-button>
     </form>
 </x-layout>

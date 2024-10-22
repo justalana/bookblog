@@ -14,4 +14,8 @@ class Book extends Model
     public function user() : belongsTo {
         return $this->belongsTo(User::class);
     }
+
+    protected $casts = [
+        'genre' => 'array',
+    ];
 }
