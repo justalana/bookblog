@@ -9,11 +9,7 @@
                 <p>{{$book -> author}}</p>
                 <a href="{{ route('books.show', $book -> id) }}">Details</a>
 
-                <form action="{{ route('books.destroy', $book -> id) }}" method="post">
-                    @method('DELETE')
-                    @csrf
-                    <x-primary-button type="submit">Delete</x-primary-button>
-                </form>
+
         @endforeach
 {{--    @else--}}
 {{--        @foreach ($books as $book)--}}
