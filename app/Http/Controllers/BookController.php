@@ -11,9 +11,18 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::all();
+        if($request -> input('search') != null && $request -> input('search') != ""){
+            $books = Book::where('title', 'like', '%'.$request -> input('search').'%') -> orWhere('author', 'like', '%'.$request -> input('search').'%')->get();
+        } else {
+            $books = Book::all();
+        }
+
+
+//        if($books->genre !== 0){
+//            $books->genre = json_decode($books->genre);
+//        }
         return view('books', ['books' => $books]);
     }
 
