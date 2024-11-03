@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\LoginHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,7 +29,13 @@ class BookController extends Controller
      */
     public function create() // GET
     {
-        return view('books.create');
+        if(auth()->user()) {
+            $loginCount = LoginHistory::all()->where('user_id', auth()->user()->id)->count();
+            return view('books.create', compact('loginCount'));
+        } else {
+            return redirect('login') ->with('msg', 'You are not allowed to create a post yet.');
+        }
+
     }
 
     /**
