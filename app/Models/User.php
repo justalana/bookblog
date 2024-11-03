@@ -14,6 +14,10 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
+     * @var \Illuminate\Support\HigherOrderCollectionProxy|mixed
+     */
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>

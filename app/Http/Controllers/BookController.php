@@ -16,13 +16,10 @@ class BookController extends Controller
         if($request -> input('search') != null && $request -> input('search') != ""){
             $books = Book::where('title', 'like', '%'.$request -> input('search').'%') -> orWhere('author', 'like', '%'.$request -> input('search').'%')->get();
         } else {
-            $books = Book::all();
+            $books = Book::all()->where('active', 1);
         }
 
 
-//        if($books->genre !== 0){
-//            $books->genre = json_decode($books->genre);
-//        }
         return view('books', ['books' => $books]);
     }
 
