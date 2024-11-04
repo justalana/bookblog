@@ -8,10 +8,6 @@
         <p>{{$book -> genre}}</p>
     </div>
 
-    <div>
-        <a href="{{ route('reviews.create', $book -> id) }}">Write review</a>
-    </div>
-
     @if(isset(auth()->user()->id) && $book->user_id === auth()->user()->id)
         <div>
             <a href="{{ route('books.edit', $book -> id) }}">Edit</a>
